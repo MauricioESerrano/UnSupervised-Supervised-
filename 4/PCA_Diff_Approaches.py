@@ -31,8 +31,18 @@ def approach2(data):
     dataset_2 = []
     dataset_intermediate = []
     eigenvalues,eigenvectors = np.linalg.eigh(C)
+
+    print(eigenvectors[0])
+
+    sorted_indices = np.argsort(eigenvalues)[::-1]
+    eigenvalues = eigenvalues[sorted_indices]
+    eigenvectors = eigenvectors[:, sorted_indices]
+
+    print(eigenvectors[0])
+
     
     top50 = eigenvectors[:,:50]
+
     dataset_intermediate = np.dot(data,top50)
     
     Cprime = covMatrix(dataset_intermediate)
